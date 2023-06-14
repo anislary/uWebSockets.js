@@ -77,7 +77,7 @@ jobs:
                   arch: ${{ matrix.arch }}
                   distro: ${{ matrix.os }}
                   dockerRunArgs: |
-                      --volume ".:/repository"
+                      --volume "${PWD}:/repository"
                   install: |
                       apt-get update -q -y
                       apt-get install -q -y build-essential cmake libz-dev golang curl libunwind-dev clang
