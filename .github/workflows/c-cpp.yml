@@ -22,7 +22,7 @@ jobs:
                   xcopy /Y dist\*.node .
                   git config --global user.email "vanchenkin@yandex.ru"
                   git config --global user.name "Ivan Pechyonkin"
-                  git add *.node *.js
+                  git add *.node
                   git commit -a -m "[GitHub Actions] Updated windows-latest binaries"
             - name: Push changes
               uses: ad-m/github-push-action@master
@@ -50,7 +50,7 @@ jobs:
                   cp dist/*.node .
                   git config --global user.email "alexhultman@gmail.com"
                   git config --global user.name "Alex Hultman"
-                  git add *.node *.js
+                  git add *.node
                   git commit -a -m "[GitHub Actions] Updated ${{ matrix.os }} binaries" || true
             - name: Push changes
               uses: ad-m/github-push-action@master
