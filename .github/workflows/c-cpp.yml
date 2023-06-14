@@ -17,6 +17,8 @@ jobs:
               run: |
                   $ErrorActionPreference = 'SilentlyContinue'
                   nmake
+                  git fetch origin binaries
+                  git checkout binaries
                   xcopy /Y dist\*.node .
                   git config --global user.email "vanchenkin@yandex.ru"
                   git config --global user.name "Ivan Pechyonkin"
@@ -41,6 +43,8 @@ jobs:
                   sudo apt update || true
                   sudo apt install -y g++-aarch64-linux-gnu || true
                   make
+                  git fetch origin binaries
+                  git checkout binaries
                   cp dist/*.node .
                   git config --global user.email "alexhultman@gmail.com"
                   git config --global user.name "Alex Hultman"
@@ -79,6 +83,8 @@ jobs:
                       make
             - name: Update binaries
               run: |
+                  git fetch origin binaries
+                  git checkout binaries
                   cp dist/*.node .
                   cp dist/*.js .
                   git status
