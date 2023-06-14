@@ -22,14 +22,13 @@ jobs:
                   xcopy /Y dist\*.node .
                   git config --global user.email "vanchenkin@yandex.ru"
                   git config --global user.name "Ivan Pechyonkin"
-                  git add *.node
+                  git add ./*.node ./*.js
                   git commit -a -m "[GitHub Actions] Updated windows-latest binaries"
             - name: Push changes
               uses: ad-m/github-push-action@master
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   branch: binaries
-                  force: true
     build-unix:
         runs-on: ${{ matrix.os }}
         strategy:
@@ -50,14 +49,13 @@ jobs:
                   cp dist/*.node .
                   git config --global user.email "alexhultman@gmail.com"
                   git config --global user.name "Alex Hultman"
-                  git add *.node
+                  git add ./*.node
                   git commit -a -m "[GitHub Actions] Updated ${{ matrix.os }} binaries" || true
             - name: Push changes
               uses: ad-m/github-push-action@master
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   branch: binaries
-                  force: true
 
     build-arm:
         runs-on: ubuntu-latest
@@ -79,7 +77,7 @@ jobs:
                   arch: ${{ matrix.arch }}
                   distro: ${{ matrix.os }}
                   dockerRunArgs: |
-                      --volume "./:/repository"
+                      --volume ".:/repository"
                   install: |
                       apt-get update -q -y
                       apt-get install -q -y build-essential cmake libz-dev golang curl libunwind-dev clang
@@ -95,11 +93,10 @@ jobs:
                   git status
                   git config --global user.email "alexhultman@gmail.com"
                   git config --global user.name "Alex Hultman"
-                  git add *.node *.js
+                  git add ./*.node
                   git commit -a -m "[GitHub Actions] Updated linux-${{ matrix.arch }} binaries" || true
             - name: Push changes
               uses: ad-m/github-push-action@master
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   branch: binaries
-                  force: true
