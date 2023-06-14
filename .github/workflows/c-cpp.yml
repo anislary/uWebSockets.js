@@ -24,7 +24,11 @@ jobs:
                   git config --global user.name "Alex Hultman"
                   git add dist
                   git commit -a -m "[GitHub Actions] Updated windows-latest binaries"
-                  git push
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: ${{ github.ref }}
     build-unix:
         runs-on: ${{ matrix.os }}
         strategy:
@@ -49,7 +53,11 @@ jobs:
                   git config --global user.name "Alex Hultman"
                   git add dist
                   git commit -a -m "[GitHub Actions] Updated ${{ matrix.os }} binaries" || true
-                  git push
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: ${{ github.ref }}
     build-arm:
         runs-on: ubuntu-latest
         name: Build on ${{ matrix.arch }}
@@ -90,4 +98,8 @@ jobs:
                   git config --global user.name "Alex Hultman"
                   git add *.node *.js
                   git commit -a -m "[GitHub Actions] Updated linux-${{ matrix.arch }} binaries" || true
-                  git push
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: ${{ github.ref }}
