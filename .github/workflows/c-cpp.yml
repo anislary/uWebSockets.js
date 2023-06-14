@@ -22,6 +22,7 @@ jobs:
                   git status
                   git config --global user.email "alexhultman@gmail.com"
                   git config --global user.name "Alex Hultman"
+                  git add dist
                   git commit -a -m "[GitHub Actions] Updated windows-latest binaries"
                   git push
     build-unix:
@@ -46,6 +47,7 @@ jobs:
                   git checkout master docs/index.d.ts && mv docs/index.d.ts .
                   git config --global user.email "alexhultman@gmail.com"
                   git config --global user.name "Alex Hultman"
+                  git add dist
                   git commit -a -m "[GitHub Actions] Updated ${{ matrix.os }} binaries" || true
                   git push
     build-arm:
