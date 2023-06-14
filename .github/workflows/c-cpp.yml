@@ -16,7 +16,7 @@ jobs:
                   git clone --recursive https://github.com/anislary/uWebSockets.js
                   cd uWebSockets.js
                   nmake
-                  git fetch origin binaries:binaries
+                  git fetch origin binaries
                   git checkout binaries
                   xcopy /Y dist\*.node .
                   git status
@@ -38,7 +38,7 @@ jobs:
                   git clone --recursive https://github.com/anislary/uWebSockets.js
                   cd uWebSockets.js
                   make
-                  git fetch origin binaries:binaries
+                  git fetch origin binaries
                   git checkout binaries
                   cp dist/*.node .
                   git status
@@ -77,7 +77,7 @@ jobs:
             - name: Update binaries
               run: |
                   cd uWebSockets.js
-                  git fetch origin binaries:binaries
+                  git fetch origin binaries
                   git checkout binaries
                   cp dist/*.node .
                   cp dist/*.js .
