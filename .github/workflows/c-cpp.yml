@@ -29,6 +29,7 @@ jobs:
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   branch: binaries
+                  force: true
     build-unix:
         runs-on: ${{ matrix.os }}
         strategy:
@@ -56,6 +57,8 @@ jobs:
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   branch: binaries
+                  force: true
+
     build-arm:
         runs-on: ubuntu-latest
         name: Build on ${{ matrix.arch }}
@@ -76,11 +79,12 @@ jobs:
                   arch: ${{ matrix.arch }}
                   distro: ${{ matrix.os }}
                   dockerRunArgs: |
-                      --volume "./:./"
+                      --volume "./:/repository"
                   install: |
                       apt-get update -q -y
                       apt-get install -q -y build-essential cmake libz-dev golang curl libunwind-dev clang
                   run: |
+                      cd repository
                       make
             - name: Update binaries
               run: |
@@ -98,3 +102,4 @@ jobs:
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   branch: binaries
+                  force: true
