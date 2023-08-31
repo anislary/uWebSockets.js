@@ -25,7 +25,7 @@ jobs:
                   cp dist/*.node .
                   git config --global user.email "alexhultman@gmail.com"
                   git config --global user.name "Alex Hultman"
-                  git add ./*.node
+                  git add .
                   git commit -a -m "[GitHub Actions] Updated ${{ matrix.os }} binaries" || true
             - name: Push changes
               uses: ad-m/github-push-action@master
